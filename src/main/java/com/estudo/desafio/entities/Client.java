@@ -1,0 +1,84 @@
+package com.estudo.desafio.entities;
+
+import java.time.LocalDate;
+import java.util.Objects;
+
+public class Client {
+
+
+    private  Long id;
+    private  String name;
+    private  String cpf;
+    private  Double income;
+    private LocalDate birthDate;
+    private Integer children;
+
+    public Client(String name, Long id, String cpf, Double income, LocalDate birthDate, Integer children) {
+        this.name = name;
+        this.id = id;
+        this.cpf = cpf;
+        this.income = income;
+        this.birthDate = birthDate;
+        this.children = children;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Integer getChildren() {
+        return children;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public Double getIncome() {
+        return income;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setIncome(Double income) {
+        this.income = income;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setChildren(Integer children) {
+        this.children = children;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return Objects.equals(id, client.id) && Objects.equals(cpf, client.cpf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cpf);
+    }
+}
