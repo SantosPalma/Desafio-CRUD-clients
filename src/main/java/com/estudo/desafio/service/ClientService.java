@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +35,29 @@ public class ClientService {
         Page<Client> clients = repository.findAll(pageable);
         return clients.map(x -> new ClientDTO(x));
 
+
+    }
+
+
+
+    @Transactional
+    public ClientDTO insert(ClientDTO dto) {
+
+        Client entity = new Client();
+        copyDtoEntity(dto, entity);
+        entity = repository.save(entity);
+        return new ClientDTO(entity);
+
+    }
+
+
+
+    private void copyDtoEntity(ClientDTO dto, Client entity) {
+        entity.setName(dto.getName());
+        entity.setCpf(dto.getCpf());
+        entity.setIncome(dto.getIncome());
+        entity.setBirthDate(dto.getBirthDate());
+        entity.setChildren(dto.getChildren());
 
     }
 }
