@@ -4,6 +4,7 @@ import com.estudo.desafio.dto.ClientDTO;
 import com.estudo.desafio.entities.Client;
 import com.estudo.desafio.repository.ClientRepository;
 import com.estudo.desafio.service.exception.DatabaseException;
+import com.estudo.desafio.service.exception.ResourceConflictException;
 import com.estudo.desafio.service.exception.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,9 @@ public class ClientService {
 
     @Transactional
     public ClientDTO insert(ClientDTO dto) {
+        if (repository.existsByCpf(dto.getCpf())) {
+            throw new ResourceConflictException("CPF já cadastrado");
+        }
 
         Client entity = new Client();
         copyDtoEntity(dto, entity);
