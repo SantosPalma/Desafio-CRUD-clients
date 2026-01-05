@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/clients")
@@ -42,4 +41,12 @@ public class ClientController {
         return ResponseEntity.created(uri).body(dto);
 
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ClientDTO> update(@PathVariable Long id, @RequestBody ClientDTO dto) {
+        dto = service.update(id, dto);
+        return ResponseEntity.ok(dto);
+
+    }
+
 }
