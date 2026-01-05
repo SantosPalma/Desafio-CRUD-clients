@@ -22,23 +22,24 @@ public class ClientController {
     private ClientService service;
 
     @GetMapping(value = "/{id}")
-    public ClientDTO findById(@PathVariable Long id) {
-     ClientDTO clientDTO = service.findById(id);
-     return clientDTO;
+    public ResponseEntity<ClientDTO> findById(@PathVariable Long id) {
+     ClientDTO dto = service.findById(id);
+     return ResponseEntity.ok(dto);
 
     }
 
     @GetMapping
-    public Page<ClientDTO> findAll(Pageable  pageable ) {
-        return service.findAll(pageable);
+    public ResponseEntity<Page<ClientDTO>> findAll(Pageable  pageable ) {
+        Page<ClientDTO> dto =  service.findAll(pageable);
+        return ResponseEntity.ok(dto);
 
     }
 
     @PostMapping
-    public ClientDTO insert(@RequestBody ClientDTO dto) {
-        return service.insert(dto);
-        //URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
-       // return ResponseEntity.created(uri).body(dto);
+    public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO dto) {
+        dto = service.insert(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
+        return ResponseEntity.created(uri).body(dto);
 
     }
 }
