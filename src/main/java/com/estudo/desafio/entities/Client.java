@@ -26,7 +26,12 @@ public class Client {
     private LocalDate birthDate;
     private Integer children;
 
+
+    protected Client() {
+    }
+
     public Client(Long id,String name, String cpf, Double income, LocalDate birthDate, Integer children) {
+        super();
         this.id = id;
         this.name = name;
         this.cpf = cpf;
