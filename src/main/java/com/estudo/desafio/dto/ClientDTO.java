@@ -1,10 +1,7 @@
 package com.estudo.desafio.dto;
 
 import com.estudo.desafio.entities.Client;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
@@ -24,7 +21,7 @@ public class ClientDTO {
 
 
     @NotNull(message = "A data não pode ser nula")
-    @PastOrPresent(message = "A data do evento deve ser no passado")
+    @Past(message = "A data do evento deve ser no passado")
     private LocalDate birthDate;
     private Integer children;
 

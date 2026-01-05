@@ -1,6 +1,7 @@
 package com.estudo.desafio.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
+
     private  String name;
 
     @Column(unique = true)
@@ -24,9 +26,9 @@ public class Client {
     private LocalDate birthDate;
     private Integer children;
 
-    public Client(String name, Long id, String cpf, Double income, LocalDate birthDate, Integer children) {
-        this.name = name;
+    public Client(Long id,String name, String cpf, Double income, LocalDate birthDate, Integer children) {
         this.id = id;
+        this.name = name;
         this.cpf = cpf;
         this.income = income;
         this.birthDate = birthDate;
